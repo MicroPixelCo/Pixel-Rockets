@@ -1,119 +1,121 @@
-# 🚀 Pixel Rockets 2D
+# 🚀 Pixel Rockets 2D - Advanced Edition
 
-A 2D spaceflight simulator game where you design and launch rockets with realistic physics!
+## Overview
 
-## Features
+Pixel Rockets 2D is a feature-rich 2D spaceflight simulator inspired by Spaceflight Simulator (SFS). Design, build, and launch custom rockets with realistic physics!
 
-### Rocket Building
-- **5 Rocket Parts:**
-  - 🛸 **Capsule** (500kg) - Main payload, required for launch
-  - 🪣 **Fuel Tank** (300kg) - Propellant storage
-  - ⚙️ **Engine** (200kg, 1000N thrust) - Provides propulsion
-  - 🪂 **Parachute** (50kg) - Auto-deploys for safe landing
-  - ⬆️ **Fins** (30kg) - Structural stability
+## 🎮 Features
 
-- **Building Interface:**
-  - Click parts to add (max 6 parts)
-  - Right-click to remove parts
-  - Real-time stats: weight, thrust, T/W ratio
+### Main Menu System
+- **Play** - Start rocket building
+- **Settings** - Adjust graphics, sound, and difficulty
+- **Quit** - Exit game
 
-### Flight Physics
-- **Realistic 2D Physics:**
-  - Gravity (9.81 m/s²)
-  - Thrust vector control
-  - Air resistance/drag
-  - Parachute deployment mechanics
+### Advanced Building Interface
+- **Parts Library** - Drag and drop parts into blueprint
+- **Blueprint Canvas** - Visual building area with grid
+- **Real-time Stats** - Monitor mass, thrust, T/W ratio, and cost
+- **Installed Parts List** - Quick remove individual parts
 
-- **Flight Dynamics:**
-  - Engine burns for 5 seconds
-  - Automatic parachute deployment
-  - Real-time telemetry display
-  - Max altitude tracking
+### Rocket Parts (6 types)
+1. **Capsule** (500kg) - Required payload
+2. **Fuel Tank** (300kg) - Propellant storage
+3. **Engine** (200kg, 1000N) - Main propulsion
+4. **Parachute** (50kg) - Safety landing
+5. **Fins** (30kg) - Stability
+6. **Heat Shield** (100kg) - Protection
 
-## Launch Requirements
+### Physics Simulation
+- Realistic 2D physics with gravity
+- Drag and air resistance
+- Parachute deployment mechanics
+- Real-time telemetry display
+- Max altitude tracking
 
-To launch a rocket, you must have:
-1. ✅ At least one **Capsule**
-2. ✅ At least one **Engine**
-3. ✅ **Thrust-to-Weight ratio > 1.0**
+### Flight System
+- 5-second engine burn
+- Automatic parachute deployment
+- Live flight data
+- Smooth animations
+- Landing detection
 
-## How to Play
+## 🎯 How to Play
 
-### Building Phase
-1. Click part buttons to add them to your rocket
-2. Watch the stats update in real-time
-3. Right-click on the canvas to remove the last part
-4. Maximum 6 parts allowed
+### Building Mode
+1. Click **PLAY** from main menu
+2. Drag parts from library to blueprint
+3. Click parts directly to add quickly
+4. Right-click installed parts to remove
+5. Watch stats update in real-time
+6. Click **LAUNCH** when ready
 
-### Launch Phase
-1. When your rocket is ready, click **LAUNCH ROCKET**
-2. Watch your rocket take off with realistic physics
-3. Engine provides thrust for 5 seconds
-4. Parachute auto-deploys if equipped and altitude is low
-5. Try different combinations to reach the highest altitude!
+### Flight Mode
+1. Watch rocket take off
+2. Engine burns for 5 seconds
+3. Parachute auto-deploys
+4. Land safely
+5. Return to building mode
 
-## Game Statistics
+## 📊 Launch Requirements
+- At least 1 Capsule
+- At least 1 Engine
+- Thrust-to-Weight ratio > 1.0
 
-- **Total Weight:** Sum of all part masses
-- **Total Thrust:** Sum of all engine thrusts
-- **Thrust/Weight Ratio:** Determines launch capability
-- **Altitude:** Current height above ground
-- **Max Altitude:** Highest altitude achieved
+## 🎨 UI Features
+- Cyberpunk-themed design
+- Neon green and blue colors
+- Smooth animations
+- Responsive layout
+- Retro-futuristic feel
 
-## Tips for Better Flights
+## 💾 Technical Stack
+- **HTML5** - Structure
+- **CSS3** - Advanced styling and animations
+- **Vanilla JavaScript** - Game logic
+- **Canvas 2D** - Graphics rendering
 
-1. **Balance matters:** Heavy rockets need more thrust
-2. **Parachute helps:** Adds drag to slow descent
-3. **Multiple engines:** Stack engines for more thrust
-4. **Fuel optimization:** Engine burns for fixed 5 seconds
-5. **Fins not essential:** Just for show, don't affect physics
-
-## Technical Details
-
-### Physics Engine
-- Custom Vector2 class for 2D math
-- Force calculation: gravity, thrust, drag
-- Integration-based physics simulation
-- Real-time collision detection with ground
-
-### Game Loop
-- 60 FPS using `requestAnimationFrame`
-- Delta time calculation for frame-independent physics
-- Canvas 2D rendering
-
-### File Structure
+## 📁 File Structure
 ```
-index.html      - Main HTML interface
-styles.css      - Game styling (cyberpunk theme)
-engine.js       - Physics engine and rocket class
-parts.js        - Rocket part definitions
-game.js         - Main game loop and rendering
-README.md       - This file
+├── index.html       - Main HTML page
+├── styles.css       - All styling
+├── engine.js        - Physics and rocket logic
+├── parts.js         - Part definitions
+├── game.js          - Main game class
+├── ui.js            - UI interactions
+└── README.md        - This file
 ```
 
-## Browser Support
+## 🎮 Controls
+- **Drag** - Move parts to canvas
+- **Click** - Quick add parts / Select menu items
+- **Right-click** - Remove parts (in installed list)
+- **Enter** - Confirm actions
 
+## 🚀 Future Enhancements
+- [ ] Multiple stage separation
+- [ ] Orbital mechanics
+- [ ] Save/load designs
+- [ ] Leaderboard system
+- [ ] Sound effects
+- [ ] Mobile touch support
+- [ ] Advanced aerodynamics
+- [ ] Mission objectives
+- [ ] Fuel variants
+- [ ] Engine upgrades
+
+## 🌟 Tips
+- Heavier rockets need more engines
+- Parachutes reduce landing velocity
+- Multiple engines stack for more thrust
+- Fins provide stability
+- Heat shields protect from reentry
+
+## 📱 Browser Support
 - Chrome/Edge 60+
 - Firefox 55+
 - Safari 11+
-- Any modern browser with HTML5 Canvas support
+- Any modern HTML5 browser
 
-## Future Enhancements
+## 🎉 Enjoy!
 
-- [ ] Multiple engines stacking
-- [ ] Fuel tank variants
-- [ ] Stage separation
-- [ ] Orbit mechanics
-- [ ] Save/load rocket designs
-- [ ] Leaderboard system
-- [ ] Mobile touch controls
-- [ ] Sound effects
-- [ ] Advanced aerodynamics
-
-## License
-
-Open source - Feel free to modify and share!
-
-## Credits
-
-Built with vanilla JavaScript, HTML5 Canvas, and CSS.
+Build, launch, and explore with Pixel Rockets 2D!

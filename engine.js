@@ -43,60 +43,46 @@ class Vector2 {
 // ============================================
 class PhysicsEngine {
     constructor() {
-        this.gravity = new Vector2(0, 9.81); // m/s²
-        this.airDensity = 1.225; // kg/m³ at sea level
-        this.groundLevel = 500; // pixels
+        this.gravity = new Vector2(0, 9.81);
+        this.airDensity = 1.225;
+        this.groundLevel = 600;
     }
 
     update(rocket, deltaTime) {
         if (!rocket.isFlying) return;
 
-        // Calculate mass
         const mass = rocket.getTotalMass();
         if (mass <= 0) return;
 
-        // Apply gravity
         const gravityForce = new Vector2(0, mass * this.gravity.y);
-
-        // Calculate thrust (if engine is active)
         let thrustForce = new Vector2(0, 0);
+
         if (rocket.isThrusting && rocket.fuelRemaining > 0) {
             const thrustMagnitude = rocket.getTotalThrust();
-            const thrustDirection = new Vector2(0, -1); // Upward
+            const thrustDirection = new Vector2(0, -1);
             thrustForce = thrustDirection.multiply(thrustMagnitude);
             rocket.fuelRemaining = Math.max(0, rocket.fuelRemaining - deltaTime * 50);
         }
 
-        // Calculate drag
         const dragForce = this.calculateDrag(rocket);
-
-        // Total force
         const totalForce = gravityForce.add(thrustForce).add(dragForce);
-
-        // Calculate acceleration (F = ma)
         const acceleration = new Vector2(totalForce.x / mass, totalForce.y / mass);
 
-        // Update velocity
         rocket.velocity = rocket.velocity.add(acceleration.multiply(deltaTime));
-
-        // Update position (pixels, convert from meters)
         const positionDelta = rocket.velocity.multiply(deltaTime).multiply(50);
         rocket.position = rocket.position.add(positionDelta);
 
-        // Update altitude
         rocket.altitude = Math.max(0, this.groundLevel - rocket.position.y);
         if (rocket.altitude > rocket.maxAltitude) {
             rocket.maxAltitude = rocket.altitude;
         }
 
-        // Check if landed
         if (rocket.position.y >= this.groundLevel) {
             rocket.isFlying = false;
             rocket.position.y = this.groundLevel;
             rocket.state = 'landed';
         }
 
-        // Auto-deploy parachute
         if (rocket.hasParachute && !rocket.parachuteDeployed && rocket.altitude < 100) {
             rocket.parachuteDeployed = true;
         }
@@ -121,7 +107,7 @@ class PhysicsEngine {
 class Rocket {
     constructor() {
         this.parts = [];
-        this.position = new Vector2(200, 100);
+        this.position = new Vector2(600, 100);
         this.velocity = new Vector2(0, 0);
         this.altitude = 0;
         this.maxAltitude = 0;
@@ -130,19 +116,23 @@ class Rocket {
         this.fuelRemaining = 100;
         this.hasParachute = false;
         this.parachuteDeployed = false;
-        this.state = 'building'; // building, flying, landed
+        this.state = 'building';
     }
 
     addPart(part) {
-        if (this.parts.length < 6) {
-            this.parts.push(part);
+        if (this.parts.length < 20) {
+            this.parts.push({...part});
+            return true;
         }
+        return false;
     }
 
-    removePart() {
-        if (this.parts.length > 0) {
-            this.parts.pop();
+    removePart(index) {
+        if (index >= 0 && index < this.parts.length) {
+            this.parts.splice(index, 1);
+            return true;
         }
+        return false;
     }
 
     clear() {
@@ -155,6 +145,10 @@ class Rocket {
 
     getTotalThrust() {
         return this.parts.reduce((sum, part) => sum + part.thrust, 0);
+    }
+
+    getTotalCost() {
+        return this.parts.reduce((sum, part) => sum + (part.cost || 0), 0);
     }
 
     getThrustToWeightRatio() {
@@ -180,7 +174,7 @@ class Rocket {
         this.velocity = new Vector2(0, 0);
         this.fuelRemaining = 100;
         this.parachuteDeployed = false;
-        this.position = new Vector2(200, 450);
+        this.position = new Vector2(600, 550);
         this.hasParachute = this.parts.some(p => p.type === 'parachute');
         return true;
     }
